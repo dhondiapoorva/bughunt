@@ -7,6 +7,12 @@ jdk:
 
 sudo: false
 
-script: "mvn cobertura:cobertura"
+script: 
+- "mvn evosuite:generate"
+- "mvn evosuite:export"
+- "mvn cobertura:cobertura"
+- "mvn evosuite:info"
+- "mvn test"
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
